@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for baseball project
+# Scrapy settings for space_object project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,14 +9,14 @@
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'baseball'
+BOT_NAME = 'space_object'
 
-SPIDER_MODULES = ['baseball.spiders']
-NEWSPIDER_MODULE = 'baseball.spiders'
+SPIDER_MODULES = ['space_object.spiders']
+NEWSPIDER_MODULE = 'space_object.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'baseball (+http://www.yourdomain.com)'
+#USER_AGENT = 'space_object (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -47,13 +47,13 @@ CONCURRENT_REQUESTS_PER_IP = 0
 # Enable or disable spider middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'baseball.middlewares.BaseballSpiderMiddleware': 543,
+#    'space_object.middlewares.space_objectSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'baseball.middlewares.MyCustomDownloaderMiddleware': 543,
+#    'space_object.middlewares.MyCustomDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -65,7 +65,7 @@ CONCURRENT_REQUESTS_PER_IP = 0
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'baseball.pipelines.BaseballPipeline': 100,  # DB保存用のミドルウェア
+    'space_object.pipelines.SpaceObjectPipeline': 100,  # DB保存用のミドルウェア
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
