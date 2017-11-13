@@ -1,13 +1,13 @@
-# 日本プロ野球の成績を取得してDBに格納するサンプル
+# NORADのTLE起動データを取得してDBに格納するサンプル
 
 ## 何ができるのか
 
-* 日本プロ野球機構(NPB)の[ホームページ](http://npb.jp/)から12球団選手の打撃・投球成績を取得
-* 取得したデータをDB(SQLite3)に保存
+* NORAD TLEを公開しているcelestrakの[ホームページ](https://www.celestrak.com/NORAD/elements/)からTLEを取得
+* 取得したデータに付加情報をつけてDB(SQLite3)に保存
 
 ## 動作環境
 
-作者(shinyorke)の動作環境より.
+オリジナルの作者(shinyorke)の動作環境より.
 
 * gitクライアント(何でもOK)
     * ソースコードを取得するために使う
@@ -28,13 +28,14 @@
 #### クローンの場合
 
 ```bash
-$ git clone https://github.com/Shinichi-Nakagawa/scrapy-sample-baseball.git
+$ git clone https://github.com/inTheRye/scrapy-sample-baseball.git
+$ git checkout scrape-space-object
 ```
 
 #### ダウンロードの場合
 
 ```bash
-$ wget https://github.com/Shinichi-Nakagawa/scrapy-sample-baseball/archive/master.zip
+$ wget https://github.com/inTheRye/scrapy-sample-baseball/archive/scrape-space-object.zip
 $ unzip master.zip
 ```
 
@@ -57,68 +58,38 @@ $ pip install scrapy
 Scrapyのエンドポイントにcdします.
 
 ```bash
-$ cd scrapy-sample-baseball/baseball
+$ cd scrapy-sample-baseball/space_object
 ```
 
 なお,ダウンロードで手に入れた人は最初のディレクトリ名が変わるので注意
 
 ```bash
-$ cd scrapy-sample-baseball-master/baseball
+$ cd scrapy-sample-baseball-scrape-space-object/space_object
 ```
 
-### 2. 打者成績を取得
+### 2. TLEを取得
 
 scrapyのコマンドで取得します.
 
-初回実施の時はDBファイル(baseball.db)が生成され,同時にSchemeも作成されます.
+初回実施の時はDBファイル(space_object.db)が生成され,同時にSchemeも作成されます.
 
 ```bash
-$ scrapy crawl batter -a year=2017 -a league=1
+$ scrapy crawl tle
 ```
-
-### 3. 投手成績を取得
-
-同じく,scrapyのコマンドで取得します.
-
-初回実施の時はDBファイル(baseball.db)が生成され,同時にSchemeも作成されます.
-
-```bash
-$ scrapy crawl pitcher -a year=2017 -a league=1
-```
-
-### [TIPS]オプション引数(打者・投手共通)
-
-いずれも省略可能,省略時はdefault値が使われます.
-
-#### year(default:2017)
-
-取得する成績年度
-
-#### league(default:1)
-
-1軍成績もしくは2軍成績
-
-2軍の場合は
-
-```bash
-$ scrapy crawl {batter|pitcher} -a year=2017 -a league=2
-```
-
-これで取得可能です.
 
 ## データについて
 
 ### 構造
 
-[baseball/baseball/item.py](https://github.com/Shinichi-Nakagawa/scrapy-sample-baseball/blob/master/baseball/baseball/items.py)に乗っているカラムと解説が全てです.
+[space_object/space_object/item.py](https://github.com/inTheRye/scrapy-sample-baseball/blob/scrape-space-object/space_object/space_object/items.py)に乗っているカラムと解説が全てです.
 
-カラムの名称は一般的に使われる野球英語の略称を用いています.
+カラムの名称はsgp4モジュールの属性の略称を用いています.
 
 詳細は各Itemのコメントを参照ください.
 
 ### Table Scheme
 
-[baseball/baseball/pipelines.py](https://github.com/Shinichi-Nakagawa/scrapy-sample-baseball/blob/master/baseball/baseball/pipelines.py)にCreate Table文があります.
+[space_object/space_object/pipelines.py](https://github.com/inTheRye/scrapy-sample-baseball/blob/scrape-space-object/space_object/space_object/pipelines.py)にCreate Table文があります.
 
 カラムの意味と解説はItemと全く同じです(id値とcreate_date/update_dateがあるぐらいの違い)
 
