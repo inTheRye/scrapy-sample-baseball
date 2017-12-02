@@ -13,7 +13,7 @@ class TwoLineElementSpider(scrapy.Spider):
     allowed_domains = ['www.celestrak.com']
     URL_TEMPLATE = 'https://www.celestrak.com/NORAD/elements/{category}'
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """
         初期処理(CATEGORY毎のURLを設定)
         """
